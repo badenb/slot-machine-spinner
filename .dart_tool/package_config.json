@@ -155,10 +155,10 @@
       "name": "slot_machine",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-04-25T20:11:02.689935Z",
+  "generated": "2022-04-26T20:26:38.875871Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }
