@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Spinner'),
+      home: const MyHomePage(title: 'Spin To Win'),
     );
   }
 }
