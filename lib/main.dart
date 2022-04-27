@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<String> entries = <String>['A', 'B', 'C'];
   final List<int> colorCodes = <int>[600, 500, 100];
-
+  final list = List<int>.generate(100, (i) => i + 1);
 
   void _randomNumber() {
     setState(() {
@@ -50,23 +50,69 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListWheelScrollView(
-        itemExtent: 500,
-        diameterRatio: 1.5,
+      body: Row(
         children: [
-          ListView.separated(
-            padding: const EdgeInsets.all(8),
-            itemCount: entries.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                height: 50,
-                color: Colors.amber[colorCodes[index]],
-                child: Center(child: Text('Entry ${entries[index]}')),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) => const Divider(),
-          )
-        ]
+          SizedBox(
+            width: 100,
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(10),
+              itemCount: list.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(5.0),
+                        ),
+                        title: Text(
+                          "${list[index]}",
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          SizedBox(
+            width: 100,
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(10),
+              itemCount: list.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(5.0),
+                        ),
+                        title: Text(
+                          "${list[index]}",
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _randomNumber,
