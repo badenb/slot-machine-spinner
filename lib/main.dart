@@ -32,14 +32,14 @@ class _MyHomePageState extends State<MyHomePage> {
   final FixedExtentScrollController _controllerLeft = FixedExtentScrollController();
   final FixedExtentScrollController _controllerCenter = FixedExtentScrollController();
   final FixedExtentScrollController _controllerRight = FixedExtentScrollController();
+  final list = List<int>.generate(15, (i) => i + 1);
 
   Random random = Random();
+
   int? numLeft = 0;
   int? numCenter = 0;
   int? numright = 0;
   
-  final list = List<int>.generate(15, (i) => i + 1);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,13 +146,13 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {
           _controllerLeft.animateToItem(random.nextInt(15),
           duration: const Duration(milliseconds: 2000), 
-          curve: Curves.linear);
+          curve: Curves.easeInOut);
           _controllerCenter.animateToItem(random.nextInt(15),
           duration: const Duration(milliseconds: 2000), 
-          curve: Curves.linear);
+          curve: Curves.easeInOut);
           _controllerRight.animateToItem(random.nextInt(15),
           duration: const Duration(milliseconds: 2000), 
-          curve: Curves.linear);
+          curve: Curves.easeInOut);
         },
         tooltip: 'Spin',
         child: const Icon(Icons.sync),
