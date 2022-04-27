@@ -61,14 +61,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       ListTile(
                         shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.circular(5.0),
                         ),
-                        title: Text(
-                          "${list[index]}",
+                        title: Center(
+                          child: Text(
+                            "${list[index]}",
+                          )
                         ),
                       )
                     ],
@@ -95,14 +98,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       ListTile(
                         shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.circular(5.0),
                         ),
-                        title: Text(
-                          "${list[index]}",
+                        title: Center(
+                          child: Text(
+                            "${list[index]}",
+                          ),
                         ),
                       )
                     ],
@@ -124,14 +130,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       ListTile(
                         shape: RoundedRectangleBorder(
                           borderRadius:
                               BorderRadius.circular(5.0),
                         ),
-                        title: Text(
-                          "${list[index]}",
+                        title: Center(
+                          child: Text(
+                            "${list[index]}",
+                          ),
                         ),
                       )
                     ],
