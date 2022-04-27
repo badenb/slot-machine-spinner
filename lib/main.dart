@@ -29,20 +29,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final FixedExtentScrollController _controllerLeft = FixedExtentScrollController();
+  final FixedExtentScrollController _controllerCenter = FixedExtentScrollController();
+  final FixedExtentScrollController _controllerRight = FixedExtentScrollController();
+
   Random random = Random();
   int? numLeft = 0;
   int? numCenter = 0;
   int? numright = 0;
-
-  final List<String> entries = <String>['A', 'B', 'C'];
-  final List<int> colorCodes = <int>[600, 500, 100];
-  final list = List<int>.generate(100, (i) => i + 1);
-
-  void _randomNumber() {
-    setState(() {
-      numLeft = random.nextInt(100);
-    });
-  }
+  
+  final list = List<int>.generate(15, (i) => i + 1);
 
   @override
   Widget build(BuildContext context) {
@@ -52,15 +48,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Row(
         children: [
-          SizedBox(
-            width: 100,
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              padding: const EdgeInsets.all(10),
-              itemCount: list.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
+          Expanded(
+            child: ListWheelScrollView.useDelegate(
+              controller: _controllerLeft,
+              itemExtent: 200,
+              diameterRatio: 6,
+              childDelegate: ListWheelChildLoopingListDelegate(
+                children: List<Widget>.generate(list.length, (index) => Card(
+                  color: Colors.blue,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
@@ -78,19 +73,23 @@ class _MyHomePageState extends State<MyHomePage> {
                       )
                     ],
                   ),
-                );
+                ),)
+              ),
+              onSelectedItemChanged: (index) => {
+                setState(() {
+                  numLeft = index;
+                })
               },
             ),
           ),
-          SizedBox(
-            width: 100,
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              padding: const EdgeInsets.all(10),
-              itemCount: list.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
+          Expanded(
+            child: ListWheelScrollView.useDelegate(
+              controller: _controllerCenter,
+              itemExtent: 200,
+              diameterRatio: 6,
+              childDelegate: ListWheelChildLoopingListDelegate(
+                children: List<Widget>.generate(list.length, (index) => Card(
+                  color: Colors.blue,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
@@ -108,14 +107,53 @@ class _MyHomePageState extends State<MyHomePage> {
                       )
                     ],
                   ),
-                );
-              },
+                ),)
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListWheelScrollView.useDelegate(
+              controller: _controllerRight,
+              itemExtent: 200,
+              diameterRatio: 6,
+              childDelegate: ListWheelChildLoopingListDelegate(
+                children: List<Widget>.generate(list.length, (index) => Card(
+                  color: Colors.blue,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(5.0),
+                        ),
+                        title: Text(
+                          "${list[index]}",
+                        ),
+                      )
+                    ],
+                  ),
+                ),)
+              ),
             ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _randomNumber,
+        onPressed: () {
+          _controllerLeft.animateToItem(random.nextInt(15),
+          duration: const Duration(milliseconds: 2000), 
+          curve: Curves.linear);
+          _controllerCenter.animateToItem(random.nextInt(15),
+          duration: const Duration(milliseconds: 2000), 
+          curve: Curves.linear);
+          _controllerRight.animateToItem(random.nextInt(15),
+          duration: const Duration(milliseconds: 2000), 
+          curve: Curves.linear);
+        },
         tooltip: 'Spin',
         child: const Icon(Icons.sync),
       ),
