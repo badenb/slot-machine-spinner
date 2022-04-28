@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Expanded(
             child: ListWheelScrollView.useDelegate(
+              physics: const NeverScrollableScrollPhysics(parent: null),
               controller: _controllerLeft,
               itemExtent: 200,
               diameterRatio: 6,
@@ -86,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Expanded(
             child: ListWheelScrollView.useDelegate(
+              physics: const NeverScrollableScrollPhysics(parent: null),
               controller: _controllerCenter,
               itemExtent: 200,
               diameterRatio: 6,
@@ -118,6 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Expanded(
             child: ListWheelScrollView.useDelegate(
+              physics: const NeverScrollableScrollPhysics(parent: null),
               controller: _controllerRight,
               itemExtent: 200,
               diameterRatio: 6,
