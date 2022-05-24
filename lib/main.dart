@@ -31,14 +31,41 @@ class _MyHomePageState extends State<MyHomePage> {
   final FixedExtentScrollController _controllerLeft = FixedExtentScrollController();
   final FixedExtentScrollController _controllerCenter = FixedExtentScrollController();
   final FixedExtentScrollController _controllerRight = FixedExtentScrollController();
-  final list = List<int>.generate(15, (i) => i + 1);
+  final list = List<int>.generate(7, (i) => i);
 
   Random random = Random();
 
-  int? numLeft = 0;
-  int? numCenter = 0;
-  int? numright = 0;
-  
+  int numLeft = 0;
+  int numCenter = 0;
+  int numRight = 0;
+
+  setStateOfLeftWheelIndex() {
+    int num = random.nextInt(7);
+    while ( num == numLeft) {
+      num = random.nextInt(7);
+    }
+    numLeft = num;
+    _controllerLeft.animateToItem(numLeft, duration: const Duration(milliseconds: 2000), curve: Curves.easeInOut);
+  }
+
+  setStateOfCenterWheelIndex() {
+    int num = random.nextInt(7);
+    while ( num == numCenter) {
+      num = random.nextInt(7);
+    }
+    numCenter = num;
+    _controllerCenter.animateToItem(numCenter, duration: const Duration(milliseconds: 2000), curve: Curves.easeInOut);
+  }
+
+  setStateOfRightWheelIndex() {
+    int num = random.nextInt(7);
+    while ( num == numRight) {
+      num = random.nextInt(7);
+    }
+    numRight = num;
+    _controllerRight.animateToItem(numRight, duration: const Duration(milliseconds: 2000), curve: Curves.easeInOut);
+  }
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: ListWheelScrollView.useDelegate(
               physics: const NeverScrollableScrollPhysics(parent: null),
               controller: _controllerLeft,
-              itemExtent: 200,
+              itemExtent: 300,
               diameterRatio: 6,
               childDelegate: ListWheelChildLoopingListDelegate(
                 children: List<Widget>.generate(list.length, (index) => Card(
@@ -78,18 +105,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),)
               ),
-              onSelectedItemChanged: (index) => {
-                setState(() {
-                  numLeft = index;
-                })
-              },
             ),
           ),
           Expanded(
             child: ListWheelScrollView.useDelegate(
               physics: const NeverScrollableScrollPhysics(parent: null),
               controller: _controllerCenter,
-              itemExtent: 200,
+              itemExtent: 300,
               diameterRatio: 6,
               childDelegate: ListWheelChildLoopingListDelegate(
                 children: List<Widget>.generate(list.length, (index) => Card(
@@ -122,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: ListWheelScrollView.useDelegate(
               physics: const NeverScrollableScrollPhysics(parent: null),
               controller: _controllerRight,
-              itemExtent: 200,
+              itemExtent: 300,
               diameterRatio: 6,
               childDelegate: ListWheelChildLoopingListDelegate(
                 children: List<Widget>.generate(list.length, (index) => Card(
@@ -155,15 +177,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _controllerLeft.animateToItem(random.nextInt(15),
-          duration: const Duration(milliseconds: 2000), 
-          curve: Curves.easeInOut);
-          _controllerCenter.animateToItem(random.nextInt(15),
-          duration: const Duration(milliseconds: 2000), 
-          curve: Curves.easeInOut);
-          _controllerRight.animateToItem(random.nextInt(15),
-          duration: const Duration(milliseconds: 2000), 
-          curve: Curves.easeInOut);
+          setStateOfLeftWheelIndex();
+          setStateOfCenterWheelIndex();
+          setStateOfRightWheelIndex();
         },
         tooltip: 'Spin',
         child: const Icon(Icons.sync),
