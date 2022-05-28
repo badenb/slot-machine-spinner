@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:fswitch_nullsafety/fswitch_nullsafety.dart';
@@ -54,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       num = random.nextInt(100);
     }
     numLeft = num;
-    _controllerLeft.animateToItem(numLeft, duration: const Duration(milliseconds: 2000), curve: Curves.bounceOut);
+    _controllerLeft.animateToItem(numLeft, duration: const Duration(milliseconds: 2000), curve: Curves.easeOut);
   }
 
   setStateOfCenterWheelIndex() {
@@ -63,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
       num = random.nextInt(100);
     }
     numCenter = num;
-    _controllerCenter.animateToItem(numCenter, duration: const Duration(milliseconds: 3000), curve: Curves.bounceOut);
+    _controllerCenter.animateToItem(numCenter, duration: const Duration(milliseconds: 3000), curve: Curves.easeOut);
   }
 
   setStateOfRightWheelIndex() {
@@ -72,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
       num = random.nextInt(100);
     }
     numRight = num;
-    _controllerRight.animateToItem(numRight, duration: const Duration(milliseconds: 4000), curve: Curves.bounceOut);
+    _controllerRight.animateToItem(numRight, duration: const Duration(milliseconds: 4000), curve: Curves.easeOut);
   }
  
   @override
