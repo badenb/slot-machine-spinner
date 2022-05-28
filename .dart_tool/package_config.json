@@ -68,6 +68,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "fswitch_nullsafety",
+      "rootUri": "file:///Users/badenbennett/flutter/.pub-cache/hosted/pub.dartlang.org/fswitch_nullsafety-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "lints",
       "rootUri": "file:///Users/badenbennett/flutter/.pub-cache/hosted/pub.dartlang.org/lints-1.0.1",
       "packageUri": "lib/",
@@ -158,7 +164,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-04-26T20:26:38.875871Z",
+  "generated": "2022-05-28T19:05:42.732562Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }
